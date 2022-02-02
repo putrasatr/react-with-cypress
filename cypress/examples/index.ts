@@ -1,7 +1,4 @@
-/// <reference types="cypress" />
-
-describe("Accomplishment dashboard", () => {
-  beforeEach(() => {
+beforeEach(() => {
     cy.visit("/rewards");
   });
 
@@ -32,4 +29,3 @@ describe("Accomplishment dashboard", () => {
     cy.get("select").select("All");
     cy.get("li.Rewards-cards-list").should("have.length", 9);
   });
-});

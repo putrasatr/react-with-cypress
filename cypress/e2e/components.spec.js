@@ -8,7 +8,6 @@ describe("Komponen Test", () => {
   });
   it("injects dynamic React component and it works", () => {
     cy.get(".Hello").click("bottom");
-    cy.wait(1000);
     cy.get("input[type='color']")
       .invoke("val", "#00A79C")
       .trigger("change")
