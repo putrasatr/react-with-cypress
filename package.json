@@ -33,8 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "e2e:dev": "cypress open --env configFile=development",
-    "e2e:prod": "cypress open --env configFile=production",
-    "e2e": "cypress open"
+    "e2e:prod": "cypress open --env configFile=production"
   },
   "eslintConfig": {
     "extends": [

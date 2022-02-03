@@ -26,7 +26,6 @@ function getConfigurationByFile(file) {
     "config",
     `${file}.json`
   );
-  console.log(pathToConfigFile);
   return fs.readJson(pathToConfigFile);
 }
 
