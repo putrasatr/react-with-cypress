@@ -1,0 +1,14 @@
+{
+    "projectId": "tryCypress",
+    "baseUrl": "http://localhost:2022",
+    "ignoreTestFiles": "**/examples/*",
+    "fixturesFolder": "cypress/mocks",
+    "integrationFolder": "cypress/e2e",
+    "screenshotsFolder": "cypress/screenshots",
+    "pluginsFile": "cypress/plugins/index.js",
+    "supportFile": "cypress/support/index.js",
+    "viewportHeight": 1080,
+    "viewportWidth": 1920
+  }
+
+  
