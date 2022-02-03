@@ -15,5 +15,25 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-// eslint-disable-next-line no-unused-vars;
-module.exports = (on, config) => {};
+const fs = require("fs-extra");
+const path = require("path");
+
+function getConfigurationByFile(file) {
+  const pathToConfigFile = path.resolve(
+    "..",
+    "client",
+    "cypress",
+    "config",
+    `${file}.json`
+  );
+  console.log(pathToConfigFile);
+  return fs.readJson(pathToConfigFile);
+}
+
+// plugins file
+module.exports = (on, config) => {
+  // accept a configFile value or use development by default
+  const file = config.env.configFile || "development";
+
+  return getConfigurationByFile(file);
+};
