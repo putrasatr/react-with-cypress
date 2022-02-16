@@ -10,6 +10,7 @@ import Elements from "./components/Elements/Elements";
 import Query from "./components/Query";
 import Hydration from "./components/Query/hydration";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { ErrorBoundary } from "react-error-boundary";
 interface Props {
   name: string;
 }
@@ -19,33 +20,35 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <div className="App">
-          <div className="App-container">
-            <SideNav />
-            <Switch>
-              <Route strict exact path="/habits" component={Habit} />
-              <Route
-                strict
-                exact
-                path="/accomplishments"
-                component={Accomplishment}
-              />
-              <Route strict exact path="/rewards" component={Rewards} />
-              <Route strict exact path="/query" component={Query} />
-              <Route
-                strict
-                exact
-                path="/query/hydration"
-                component={Hydration}
-              />
-            </Switch>
+      <ErrorBoundary fallback={<div>Oh no</div>} >
+        <BrowserRouter>
+          <div className="App">
+            <div className="App-container">
+              <SideNav />
+              <Switch>
+                <Route strict exact path="/habits" component={Habit} />
+                <Route
+                  strict
+                  exact
+                  path="/accomplishments"
+                  component={Accomplishment}
+                />
+                <Route strict exact path="/rewards" component={Rewards} />
+                <Route strict exact path="/query" component={Query} />
+                <Route
+                  strict
+                  exact
+                  path="/query/hydration"
+                  component={Hydration}
+                />
+              </Switch>
+            </div>
+            <div id="app" className="app">
+              <Welcome name="Gleb" />;
+            </div>
           </div>
-          <div id="app" className="app">
-            <Welcome name="Gleb" />;
-          </div>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </ErrorBoundary>
     </QueryClientProvider>
   );
 }

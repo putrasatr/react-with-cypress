@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Rewards.css";
 import axios from "axios";
 import { QueryCache, QueryClient, useQueries, useQuery } from "react-query";
+import { useErrorHandler } from "react-error-boundary";
 
 function Rewards() {
   const queryCache = new QueryCache({
@@ -12,6 +13,7 @@ function Rewards() {
       console.log(data);
     },
   });
+  const handleError = useErrorHandler();
   const [rewards, setReward] = useState<
     {
       id: number;
@@ -36,8 +38,12 @@ function Rewards() {
   }, []);
 
   const fetchRewards = async () => {
-    const response = await axios.get("http://localhost:4000/rewards");
-    setReward(response.data);
+    try {
+      const response = await axios.get("http://localhost:4000/rewards");
+      setReward(response.data);
+    } catch (error) {
+      handleError(error);
+    }
   };
   const query = queryCache.find("rewards");
 

@@ -17,6 +17,7 @@ export default function Query() {
     refetchOnWindowFocus: false,
     retry: false,
   });
+  const dehydratedState = window._
   const queryClient = new QueryClient();
   //   const carsQuery = useQuery(["cars"], getCar, {
   //     refetchOnMount: false,
