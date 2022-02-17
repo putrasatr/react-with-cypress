@@ -1,5 +1,12 @@
 import { axiosClient } from "../../network";
-import { QueryCache, QueryClient, useQueries, useQuery } from "react-query";
+import {
+  QueryCache,
+  QueryClient,
+  useQueries,
+  useQuery,
+  useIsFetching,
+} from "react-query";
+
 const getCar = () =>
   axiosClient
     .get("/cars")
@@ -17,7 +24,7 @@ export default function Query() {
     refetchOnWindowFocus: false,
     retry: false,
   });
-  const dehydratedState = window._
+  const dehydratedState = window._;
   const queryClient = new QueryClient();
   //   const carsQuery = useQuery(["cars"], getCar, {
   //     refetchOnMount: false,
@@ -49,6 +56,18 @@ export default function Query() {
       };
     })
   );
+
+  const queryCache = new QueryCache({
+    onError: (error) => {
+      console.log(error);
+    },
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+
+  const query = queryCache.find("cars-query");
+  query?.fetch();
   return (
     <div>
       <button onClick={remove}>Remove</button>

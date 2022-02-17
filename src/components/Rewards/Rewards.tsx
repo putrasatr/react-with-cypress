@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Rewards.css";
 import axios from "axios";
-import { QueryCache, QueryClient, useQueries, useQuery } from "react-query";
+import {
+  QueryCache,
+  QueryClient,
+  useQueries,
+  useQuery,
+  useIsFetching,
+} from "react-query";
 import { useErrorHandler } from "react-error-boundary";
 
 function Rewards() {
@@ -46,7 +52,8 @@ function Rewards() {
     }
   };
   const query = queryCache.find("rewards");
-
+  const isF = useIsFetching(["cars"]);
+  console.log(isF);
   return (
     <div className="Rewards">
       <div className="Rewards__heading-container">

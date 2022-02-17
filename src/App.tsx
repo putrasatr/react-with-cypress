@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import "./App.css";
 import SideNav from "./components/SideNav/SideNav";
 import Habit from "./components/Habit/Habit";
@@ -9,18 +9,19 @@ import Rewards from "./components/Rewards/Rewards";
 import Elements from "./components/Elements/Elements";
 import Query from "./components/Query";
 import Hydration from "./components/Query/hydration";
-import { QueryClientProvider, QueryClient } from "react-query";
+import { QueryClientProvider, QueryClient, useIsFetching } from "react-query";
 import { ErrorBoundary } from "react-error-boundary";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 interface Props {
   name: string;
 }
 
 function App() {
   const queryClient = new QueryClient();
-
   return (
     <QueryClientProvider client={queryClient}>
-      <ErrorBoundary fallback={<div>Oh no</div>} >
+      <ErrorBoundary fallback={<div>Oh no</div>}>
         <BrowserRouter>
           <div className="App">
             <div className="App-container">
@@ -47,13 +48,19 @@ function App() {
               <Welcome name="Gleb" />;
             </div>
           </div>
+          <ReactQueryDevtools initialIsOpen />
         </BrowserRouter>
       </ErrorBoundary>
     </QueryClientProvider>
   );
 }
-const Welcome: React.FC<Props> = (props) => {
+interface CheckProps {
+  a: string;
+}
+
+const Welcome: React.FC<Props> = (props, context) => {
   const [color, setColor] = useState(false);
+
   return (
     <>
       <p
@@ -67,4 +74,5 @@ const Welcome: React.FC<Props> = (props) => {
     </>
   );
 };
+
 export default App;
