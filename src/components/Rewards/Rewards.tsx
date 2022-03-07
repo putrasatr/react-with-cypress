@@ -9,6 +9,7 @@ import {
   useIsFetching,
 } from "react-query";
 import { useErrorHandler } from "react-error-boundary";
+import useLocalHooks from "src/hooks";
 
 function Rewards() {
   const queryCache = new QueryCache({
@@ -52,8 +53,7 @@ function Rewards() {
     }
   };
   const query = queryCache.find("rewards");
-  const isF = useIsFetching(["cars"]);
-  console.log(isF);
+
   return (
     <div className="Rewards">
       <div className="Rewards__heading-container">
