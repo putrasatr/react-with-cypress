@@ -12,6 +12,7 @@ import Hydration from "./components/Query/hydration";
 import { QueryClientProvider, QueryClient, useIsFetching } from "react-query";
 import { ErrorBoundary } from "react-error-boundary";
 import { ReactQueryDevtools } from "react-query/devtools";
+import HelloWorldPage from "./components/GeneratHTML/render";
 
 interface Props {
   name: string;
@@ -42,6 +43,7 @@ function App() {
                   path="/query/hydration"
                   component={Hydration}
                 />
+                <Route strict exact path="/render" component={HelloWorldPage} />
               </Switch>
             </div>
             <div id="app" className="app">
